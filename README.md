@@ -20,9 +20,9 @@ Creamos una cuenta gratuita en PythonAnywhere, configuramos una aplicación Flas
 
 1. Correr el siguiente comando en el bash
 
-'''shell
+```shell
 mkvirtualenv myvirtualenv
-'''
+```
 
 2. Ve a la pestaña "Web", en la sección "Virtualenv:" copia esta url "/home/tu_usuario/.virtualenvs/myvirtualenv"
 
@@ -37,7 +37,7 @@ mkvirtualenv myvirtualenv
 2. Ve a la pestaña "Databases" para encontrar tus credenciales de la base de datos MySQL.
 3. Ejecutamos el siguiente código SQL para crear una tabla de ejemplo
 
-''' sql
+```sql
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
@@ -47,22 +47,22 @@ CREATE TABLE user (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-'''
+```
 
 ### 6. Crear el Archivo `.env`
 
 Crea un archivo `.env` en el directorio raíz de tu aplicación Flask para almacenar tus credenciales de MySQL de forma segura. El archivo `.env` debería verse algo así:
 
-'''python
+```python
 MYSQL_USER='tu_usuario_mysql'
 MYSQL_PASS='tu_contraseña_mysql'
-'''
+```
 
 ### 7. Cargar el archvio de varibales de entorno
 
 Editar el archivo 'tu_usuario_pythonanywhere_com_wsgi.py' en la ruta '/var/www/tu_usuario_pythonanywhere_com_wsgi.py'
 
-'''python
+```python
 import sys
 import os
 from dotenv import load_dotenv
@@ -80,13 +80,13 @@ os.environ['FLASK_APP'] = 'flask_app.py'
 
 # import flask app but need to call it "application" for WSGI to work
 from flask_app import app as application  # noqa
-'''
+```
 
 ### 8. Instar dependencias
 
-'''shell
+```shell
 pip install flask
 pip install flask_sqlalchemy
 pip install pymysql
 pip install python-dotenv
-'''
+```
