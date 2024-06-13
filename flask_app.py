@@ -122,3 +122,28 @@ def delete_user(id):
         return jsonify({"Exito":"Usuario eliminado"})
     else:
         return jsonify({"Error":"Usuario no encontrado"})
+    
+    # update usuario
+@app.route('/update_user',methods=["POST"])
+def create_user():
+    # Obtener los datos
+    if request.is_json:
+        data = request.get_json()
+        name = data.get("name")
+        mail = data.get("email")
+        pwd = data.get("password")
+    else:
+        name = request.form.get("name")
+        mail = request.form.get("email")
+        pwd = request.form.get("password")
+
+    # Verificar si hay datos para agregar y
+    # crear el usuario en la base de datos
+    if name and mail and pwd:
+        user = User(name = name,email = mail)
+        user.set_password(pwd)
+        #db.session.add(user)
+        db.session.commit()
+        return jsonify({"Exito":f"Usuario {user.name} update correctamente"})
+    else:
+        jsonify({"Error":"update Datos incompletos"})
