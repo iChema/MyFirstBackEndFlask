@@ -125,7 +125,7 @@ def delete_user(id):
     
     # update usuario
 @app.route('/update_user',methods=["POST"])
-def create_user():
+def update_user():
     # Obtener los datos
     if request.is_json:
         data = request.get_json()
